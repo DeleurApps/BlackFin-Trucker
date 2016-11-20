@@ -104,7 +104,7 @@
                                         <rect key="frame" x="0.0" y="28" width="414" height="137"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AHN-ef-MgG" id="r1f-PV-Xmh">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="136"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="136.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Port Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X12-NT-mKI">
@@ -334,7 +334,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="w8I-P9-jKF">
-                                <rect key="frame" x="20" y="154.33333333333337" width="374" height="116.66666666666663"/>
+                                <rect key="frame" x="20" y="154.33333333333331" width="374" height="148.99999999999994"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Container #: XXXX9999999" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0JZ-ie-QOi">
                                         <rect key="frame" x="0.0" y="0.0" width="216" height="20.333333333333314"/>
@@ -362,6 +362,12 @@
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pickup Time: Jan 1, HH:MM AM - HH:MM AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DMj-dy-hNj">
                                         <rect key="frame" x="0.0" y="96.333333333333314" width="343.66666666666669" height="20.333333333333343"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Compensation: $XX.XX" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lt5-p0-wkQ">
+                                        <rect key="frame" x="0.0" y="128.66666666666666" width="180" height="20.333333333333314"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -421,6 +427,14 @@
                             <constraint firstItem="73D-HB-RYl" firstAttribute="trailing" secondItem="hJA-rg-KCb" secondAttribute="trailingMargin" id="vRS-hy-E0P"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="compensationLabel" destination="lt5-p0-wkQ" id="Hhm-ez-Ld7"/>
+                        <outlet property="containerLabel" destination="0JZ-ie-QOi" id="5Mz-o8-iqn"/>
+                        <outlet property="destinationNameLabel" destination="ZAj-gV-I5g" id="cb6-Tx-tx4"/>
+                        <outlet property="portNameLabel" destination="73D-HB-RYl" id="VuU-Io-2Qo"/>
+                        <outlet property="terminalNameLabel" destination="jGk-zt-YiE" id="naJ-gR-fnE"/>
+                        <outlet property="timeLabel" destination="DMj-dy-hNj" id="ub5-Gt-xtx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Kd-bn-QE0" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="NiM-IB-FY7" userLabel="Exit" sceneMemberID="exit"/>

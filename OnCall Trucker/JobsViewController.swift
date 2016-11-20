@@ -55,6 +55,8 @@ class JobsViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if let vc = segue.destination as? FilterViewController{
 			vc.currentFilter = filter
+		}else if let vc = segue.destination as? JobInfoViewController{
+			vc.job = filteredJobs[((sender as! UITapGestureRecognizer).view?.tag)!]
 		}
 		// Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
@@ -69,7 +71,7 @@ class JobsViewController: UIViewController, UITableViewDelegate, UITableViewData
 		refreshTableView()
 	}
 	
-	func openJobInfo(sender: UIButton){
+	func openJobInfo(sender: Any?){
 		self.performSegue(withIdentifier: "openJobInfo", sender: sender)
 	}
 
@@ -233,6 +235,8 @@ class JobsViewController: UIViewController, UITableViewDelegate, UITableViewData
 		let tapGesture = UITapGestureRecognizer(target: self, action: #selector(JobsViewController.openJobInfo(sender:)))
 		
 		cell.addGestureRecognizer(tapGesture)
+		
+		cell.tag = indexPath.item
 		return cell
 	}
 	
