@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class JobInfoViewController: UIViewController {
 	
@@ -18,10 +19,13 @@ class JobInfoViewController: UIViewController {
 	@IBOutlet weak var destinationNameLabel: UILabel!
 	@IBOutlet weak var timeLabel: UILabel!
 	@IBOutlet weak var compensationLabel: UILabel!
+	@IBOutlet weak var reserveButton: UIButton!
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-
+		
+		NotificationCenter.default.addObserver(self, selector: #selector(JobInfoViewController.receivedReserveJobResponse), name: Notification.Name("ReserveJobNetworkRequest"), object: nil)
+		
 		let dateFmt = DateFormatter()
 		dateFmt.locale = Locale(identifier: "en_US_POSIX")
 		
@@ -37,6 +41,22 @@ class JobInfoViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+	@IBAction func reserveJob(_ sender: UIButton) {
+		DataHandler.makePostRequest(endpoint: "fillJob", params: ["trucker_id": 10, "job_id": job?.jobid ?? 0], notificationName: "ReserveJobNetworkRequest")
+	}
+	
+	func receivedReserveJobResponse(notification: Notification){
+		if let response:HTTPURLResponse = notification.userInfo!["response"] as? HTTPURLResponse, response.statusCode == 200 {
+			reserveButton.backgroundColor = UIColor.green
+			reserveButton.setTitle("SUCCESS", for: UIControlState.normal)
+		}else{
+			reserveButton.backgroundColor = UIColor.red
+			reserveButton.setTitle("FAILED", for: UIControlState.normal)
+		}
+		DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+			self.performSegue(withIdentifier: "unwindFromJobInfo", sender: self)
+		}
+	}
 
     /*
     // MARK: - Navigation

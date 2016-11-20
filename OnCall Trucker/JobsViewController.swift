@@ -215,11 +215,11 @@ class JobsViewController: UIViewController, UITableViewDelegate, UITableViewData
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
 		let cell = tableView.dequeueReusableCell(withIdentifier: "JobCell")!
 		let job = filteredJobs[indexPath.item]
-		let portNameLabel = cell.viewWithTag(1) as! UILabel
-		let containerLabel = cell.viewWithTag(2) as! UILabel
-		let pickupTimeLabel = cell.viewWithTag(3) as! UILabel
-		let destinationLabel = cell.viewWithTag(4) as! UILabel
-		let priceLabel = cell.viewWithTag(5) as! UILabel
+		let portNameLabel = cell.viewWithTag(100000001) as! UILabel
+		let containerLabel = cell.viewWithTag(100000002) as! UILabel
+		let pickupTimeLabel = cell.viewWithTag(100000003) as! UILabel
+		let destinationLabel = cell.viewWithTag(100000004) as! UILabel
+		let priceLabel = cell.viewWithTag(100000005) as! UILabel
 		
 		let dateFmt = DateFormatter()
 		dateFmt.locale = Locale(identifier: "en_US_POSIX")

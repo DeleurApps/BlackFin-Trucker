@@ -107,7 +107,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="136.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Port Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X12-NT-mKI">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="100000001" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Port Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X12-NT-mKI">
                                                     <rect key="frame" x="164.33333333333337" y="7.9999999999999982" width="86.666666666666657" height="20.333333333333329"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -116,19 +116,19 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="OeF-1x-Tiq">
                                                     <rect key="frame" x="8" y="37.666666666666671" width="328.33333333333331" height="62.000000000000014"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Container #: XXXX9999999" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vvm-Pq-zKT">
+                                                        <label opaque="NO" userInteractionEnabled="NO" tag="100000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Container #: XXXX9999999" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vvm-Pq-zKT">
                                                             <rect key="frame" x="0.0" y="0.0" width="195.66666666666666" height="20.333333333333336"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pickup Time: Jan 1, HH:MM AM - HH:MM AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DNB-Q0-eoe">
+                                                        <label opaque="NO" userInteractionEnabled="NO" tag="100000003" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pickup Time: Jan 1, HH:MM AM - HH:MM AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DNB-Q0-eoe">
                                                             <rect key="frame" x="0.0" y="20.333333333333336" width="328.33333333333331" height="20.333333333333329"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Destination: City Name, State" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gxc-P7-BRH">
+                                                        <label opaque="NO" userInteractionEnabled="NO" tag="100000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Destination: City Name, State" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gxc-P7-BRH">
                                                             <rect key="frame" x="0.0" y="40.666666666666664" width="207.66666666666666" height="21.333333333333343"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                                             <nil key="textColor"/>
@@ -139,7 +139,7 @@
                                                         <constraint firstItem="DNB-Q0-eoe" firstAttribute="centerY" secondItem="OeF-1x-Tiq" secondAttribute="centerY" id="51k-ox-ekG"/>
                                                     </constraints>
                                                 </stackView>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$XX.XX" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rzS-k8-42M">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="100000005" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$XX.XX" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rzS-k8-42M">
                                                     <rect key="frame" x="339.33333333333326" y="57.666666666666671" width="66.666666666666686" height="22.666666666666671"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="19"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -394,7 +394,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="NiM-IB-FY7" kind="unwind" unwindAction="unwindGeneric:" id="Oty-DQ-gMb"/>
+                                    <action selector="reserveJob:" destination="GJs-VG-kNe" eventType="touchUpInside" id="Yb7-iV-6zw"/>
                                 </connections>
                             </button>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dfg-vf-dWr">
@@ -403,7 +403,7 @@
                                     <navigationItem title="Job Info" id="xsp-W3-YiX">
                                         <barButtonItem key="leftBarButtonItem" title="Back" id="HgE-GE-bPp">
                                             <connections>
-                                                <segue destination="NiM-IB-FY7" kind="unwind" unwindAction="unwindGeneric:" id="PHb-0e-GbV"/>
+                                                <segue destination="NiM-IB-FY7" kind="unwind" identifier="unwindFromJobInfo" unwindAction="unwindGeneric:" id="fdW-L3-adS"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -432,6 +432,7 @@
                         <outlet property="containerLabel" destination="0JZ-ie-QOi" id="5Mz-o8-iqn"/>
                         <outlet property="destinationNameLabel" destination="ZAj-gV-I5g" id="cb6-Tx-tx4"/>
                         <outlet property="portNameLabel" destination="73D-HB-RYl" id="VuU-Io-2Qo"/>
+                        <outlet property="reserveButton" destination="L3g-CU-RIk" id="ZDL-Kz-kBr"/>
                         <outlet property="terminalNameLabel" destination="jGk-zt-YiE" id="naJ-gR-fnE"/>
                         <outlet property="timeLabel" destination="DMj-dy-hNj" id="ub5-Gt-xtx"/>
                     </connections>
