@@ -17,4 +17,6 @@ struct Job{
 	var terminal: String
 	var destination: String
 	var compensation: Double
+	var truckerid: Int64?
+	var isFinished: Bool
 }

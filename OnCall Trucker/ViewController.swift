@@ -7,12 +7,24 @@
 //
 
 import UIKit
+import Alamofire
 
 class ViewController: UIViewController {
 
+	@IBOutlet weak var usernameTextField: UITextField!
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		NotificationCenter.default.addObserver(self, selector: #selector(ViewController.receivedTruckerInfo), name: Notification.Name("TruckerNetworkRequest"), object: nil)
 		// Do any additional setup after loading the view, typically from a nib.
+	}
+	@IBAction func signIn(_ sender: UIButton) {
+		Authorization.signIn(truckerid: usernameTextField.text!)
+	}
+	
+	func receivedTruckerInfo(notification: Notification){
+		Authorization.processNetworkResponse(notification: notification)
+		NotificationCenter.default.removeObserver(self)
 	}
 
 }

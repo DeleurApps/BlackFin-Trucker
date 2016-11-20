@@ -31,7 +31,7 @@ class JobInfoViewController: UIViewController {
 		
 		dateFmt.dateFormat = "EEE, MMM dd - hh:mma"
 		
-		portNameLabel.text = job?.port
+		portNameLabel.text = (job?.port)! + " Port"
 		containerLabel.text = "Container #: " + (job?.containerid)!
 		terminalNameLabel.text = job?.port
 		timeLabel.text = "Pickup Time: " + dateFmt.string(from: (job?.time)!)

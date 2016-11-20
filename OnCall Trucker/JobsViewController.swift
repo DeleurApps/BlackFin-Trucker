@@ -38,14 +38,16 @@ class JobsViewController: UIViewController, UITableViewDelegate, UITableViewData
 	var allJobs: [Job] = []
 	var filteredJobs: [Job] = []
 	var filter = JobFilter(timeFrom: Date(), timeTo: Date(), distance: 0, compensation: 0, port: 0)
-	
+	var activityIndicator: BlackfinActivityIndicator? = nil
 
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+		activityIndicator = BlackfinActivityIndicator(superview: self.view)
 		NotificationCenter.default.addObserver(self, selector: #selector(JobsViewController.receivedNewData), name: Notification.Name("JobsNetworkRequest"), object: nil)
 		refreshControl.addTarget(self, action: #selector(JobsViewController.refreshTableView), for: UIControlEvents.valueChanged)
 		jobTableView.addSubview(refreshControl)
+		activityIndicator?.animate()
 		loadData()
     }
 
@@ -68,7 +70,6 @@ class JobsViewController: UIViewController, UITableViewDelegate, UITableViewData
 	
 	@IBAction func unwindAndFilter(_: UIStoryboardSegue){
 		filterJobs()
-		refreshTableView()
 	}
 	
 	func openJobInfo(sender: Any?){
@@ -90,7 +91,7 @@ class JobsViewController: UIViewController, UITableViewDelegate, UITableViewData
 	}
 	
 	func refreshTableView(){
-		refreshControl.beginRefreshing();
+		refreshControl.beginRefreshing()
 		loadData()
 	}
 	
@@ -164,48 +165,61 @@ class JobsViewController: UIViewController, UITableViewDelegate, UITableViewData
 	}
 	
 	func filterJobs(){
-		
+		allJobs.sort {
+			return $0.time < $1.time
+		}
+		activityIndicator?.animate()
 			filteredJobs = allJobs.filter { job in
 				return jobBetweenTimes(job)
 					&& (filter.distance == 0 || false)
 					&& (jobCompensationInRange(job))
 					&& (filter.port == 0 || job.port == JobFilter.portsStrings[filter.port])
 			}
+		jobTableView.reloadData();
+		activityIndicator?.stopAnimation()
 	}
 	
 	func receivedNewData(notification: Notification){
-		refreshControl.endRefreshing();
-		if let result:Result<Any> = notification.userInfo!["result"] as? Result<Any> {
-			if let JSON = result.value as? NSArray {
-				for element in JSON{
-					if let jobDict:NSDictionary = element as? NSDictionary {
-						// Set date format
-						let dateFmt = DateFormatter()
-						dateFmt.timeZone = NSTimeZone.default
-						dateFmt.locale = Locale(identifier: "en_US_POSIX")
-						dateFmt.dateFormat =  "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-						
-						let dateStr = jobDict.value(forKey: "arrival_time") as? String ?? "2000-01-01T00:00:00.000Z"
-						// Get NSDate for the given string
-						let date = dateFmt.date(from: dateStr)
-						
-						let job = Job(port: jobDict.value(forKey: "port") as? String ?? "Port",
-						              jobid: jobDict.value(forKey: "id") as? Int64 ?? 0,
-						              containerid: jobDict.value(forKey: "container_id") as? String ?? "XXXX9999999",
-						              containerSize: jobDict.value(forKey: "container_size") as? Int64 ?? 0,
-						              time: date!,
-						              terminal: jobDict.value(forKey: "terminal") as? String ?? "Terminal",
-						              destination: jobDict.value(forKey: "destination") as? String ?? "City",
-						              compensation: jobDict.value(forKey: "price") as? Double ?? 0)
-						allJobs.append(job)
+		let currentTime = Date()
+		DispatchQueue.global(qos: .background).async {
+			if let result:Result<Any> = notification.userInfo!["result"] as? Result<Any> {
+				if let JSON = result.value as? NSArray {
+					for element in JSON{
+						if let jobDict:NSDictionary = element as? NSDictionary {
+							// Set date format
+							let dateFmt = DateFormatter()
+							dateFmt.timeZone = NSTimeZone.default
+							dateFmt.locale = Locale(identifier: "en_US_POSIX")
+							dateFmt.dateFormat =  "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+							
+							let dateStr = jobDict.value(forKey: "arrival_time") as? String ?? "2000-01-01T00:00:00.000Z"
+							// Get NSDate for the given string
+							let date = dateFmt.date(from: dateStr)
+							
+							let job = Job(port: jobDict.value(forKey: "port") as? String ?? "Port",
+							              jobid: jobDict.value(forKey: "id") as? Int64 ?? 0,
+							              containerid: jobDict.value(forKey: "container_id") as? String ?? "XXXX9999999",
+							              containerSize: jobDict.value(forKey: "container_size") as? Int64 ?? 0,
+							              time: date!,
+							              terminal: jobDict.value(forKey: "terminal") as? String ?? "Terminal",
+							              destination: jobDict.value(forKey: "destination") as? String ?? "City",
+							              compensation: jobDict.value(forKey: "price") as? Double ?? 0,
+							              truckerid: jobDict.value(forKey: "trucker_id") as? Int64,
+							              isFinished: jobDict.value(forKey: "is_finished") as? Bool ?? false)
+							if !job.isFinished, job.truckerid == nil, job.time > currentTime {
+								self.allJobs.append(job)
+							}
+						}
 						
 					}
-					
 				}
 			}
+			DispatchQueue.main.async {
+				self.refreshControl.endRefreshing();
+				self.activityIndicator?.stopAnimation();
+				self.filterJobs()
+			}
 		}
-		filterJobs()
-		jobTableView.reloadData();
 	}
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
@@ -226,7 +240,7 @@ class JobsViewController: UIViewController, UITableViewDelegate, UITableViewData
 		
 		dateFmt.dateFormat = "EEE, MMM dd - hh:mma"
 	
-		portNameLabel.text = job.port
+		portNameLabel.text = job.port + " Port"
 		containerLabel.text = "Container #: " + job.containerid
 		pickupTimeLabel.text = "Pickup Time: " + dateFmt.string(from: job.time)
 		destinationLabel.text = "Destination: " + job.destination
